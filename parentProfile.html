@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Δραστηριότητες</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./public/css/style.css">
+        <link rel="stylesheet" type="text/css" href="./public/css/diafora.css">
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <script src="./public/js/cookies.js"></script>
+        <script src="./public/js/navBar.js"></script>
+        <script src="./public/js/parentProfile.js"></script>
+    </head>
+    <body>
+        <!-- Top black bar -->
+        <div class="bg-dark" dir="rtl" id="topBar">
+            <a class="nav-link text-white text-right" href="signin.html" style="display: inline;"><small>Σύνδεση</small></a>
+            <a class="nav-link text-white text-left" href="signup.html" style="display: inline;"><small>Εγγραφή</small></a>
+        </div>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-sm navbar-light bg-primary">
+            <!-- Brand -->
+            <a class="navbar-brand" href="index.html">
+                <img src="./public/assets/images/logo.jpg" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="nav-content">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><b>Αρχική</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html"><b>Δραστηριότητες</b></a>
+                    </li>
+                    <li class="nav-item" id="profile">
+                    </li>
+                    <li class="nav-item">
+                        <input class="form-control" type="text" placeholder="Αναζήτηση" onkeydown="checkIfEnter()" id="searchText">
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <br>
+        <div class="row">
+            <div class="btn-group bg-primary" role="group" aria-label="...">
+                <button type="button" class="btn btn-info active" onclick="location.href = 'parentProfile.html';" >Στοιχεία</button>
+                <button type="button" class="btn btn-default disabled" onclick="location.href = 'parentProfile_points.html';">Πόντοι</button>
+                <button type="button" class="btn btn-default disabled" onclick="location.href = 'parentProfile_events.html';">Δραστηριότητες</button>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-6 col-sm-2 col-md-2">
+                Όνομα
+            </div>
+            <div class="col-6 col-sm-2 col-md-2" id="currentName">
+            </div>
+            <div class="col-sm-2 col-md-2">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changeName()">Αλλαγή</button>
+            </div>
+            <div class="col-6 col-sm-2 col-md-2 hidden" id="newName">
+                <input type="text" class="form-control" id="name"></input>
+            </div>
+            <div class="col-6 col-sm-2 col-md-2 hidden" id="newNameConfirm">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changeNameConfirm()">Επιβεβαίωση</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-sm-2 col-md-2">
+                Επώνυμο
+            </div>
+            <div class="col-6 col-sm-2 col-md-2" id="currentSurname">
+            </div>
+            <div class="col-sm-2 col-md-2">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changeSurname()">Αλλαγή</button>
+            </div>
+            <div class="col-6 col-sm-2 col-md-2 hidden" id="newSurname">
+                <input type="text" class="form-control" id="surname"></input>
+            </div>
+            <div class="col-6 col-sm-2 col-md-2 hidden" id="newSurnameConfirm">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changeSurnameConfirm()">Επιβεβαίωση</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-sm-2 col-md-2">
+                Τηλέφωνο
+            </div>
+            <div class="col-6 col-sm-2 col-md-2" id="currentTel">
+            </div>
+            <div class="col-sm-2 col-md-2">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changeTel()">Αλλαγή</button>
+            </div>
+            <div class="col-6 col-sm-2 col-md-2 hidden" id="newTel">
+                <input type="number" class="form-control" id="tel"></input>
+            </div>
+            <div class="col-6 col-sm-2 col-md-2 hidden" id="newTelConfirm">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changeTelConfirm()">Επιβεβαίωση</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-md-2">
+                Διεύθυνση email
+            </div>
+            <div class="col-sm-2 col-md-2" id="currentEmail">
+            </div>
+            <div class="col-sm-2 col-md-2">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changeEmail()">Αλλαγή</button>
+            </div>
+            <div class="col-sm-2 col-md-2 hidden" id="newEmail">
+                <input type="text" class="form-control" id="email"></input>
+            </div>
+            <div class="col-sm-2 col-md-2 hidden" id="newEmailConfirm">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changeEmailConfirm()">Επιβεβαίωση</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-sm-2 col-md-2">
+                Κωδικός
+            </div>
+            <div class="col-6 col-sm-2 col-md-2" id="currentPass">
+                xxxxxxxx
+            </div>
+            <div class="col-sm-2 col-md-2">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changePass()">Αλλαγή</button>
+            </div>
+            <div class="col-8 col-sm-2 col-md-2 hidden" id="newPass">
+                <input type="password" class="form-control" id="pass"></input>
+            </div>
+            <div class="col-8 col-sm-2 col-md-2 hidden" id="newPass2">
+                <input type="password" class="form-control" id="pass2"></input>
+            </div>
+            <div class="col-sm-2 col-md-2 hidden" id="newPassConfirm">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changePassConfirm()">Επιβεβαίωση</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-md-2">
+                Ταχυδρομικός κώδικας
+            </div>
+            <div class="col-sm-2 col-md-2" id="currentPC">
+            </div>
+            <div class="col-sm-2 col-md-2">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changePC()">Αλλαγή</button>
+            </div>
+            <div class="col-6 col-sm-2 col-md-2 hidden" id="newPC">
+                <input type="text" class="form-control" id="PC"></input>
+            </div>
+            <div class="col-6 col-sm-2 col-md-2 hidden" id="newPCConfirm">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changePCConfirm()">Επιβεβαίωση</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-sm-2 col-md-2">
+                Πόλη
+            </div>
+            <div class="col-6 col-sm-2 col-md-2" id="currentCity">
+            </div>
+            <div class="col-sm-2 col-md-2">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changeCity()">Αλλαγή</button>
+            </div>
+            <div class="col-6 col-sm-2 col-md-2 hidden" id="newCity">
+                <input type="text" class="form-control" id="city"></input>
+            </div>
+            <div class="col-6 col-sm-2 col-md-2 hidden" id="newCityConfirm">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changeCityConfirm()">Επιβεβαίωση</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-sm-2 col-md-2">
+                Οδός
+            </div>
+            <div class="col-6 col-sm-2 col-md-2" id="currentRoad">
+            </div>
+            <div class="col-sm-2 col-md-2">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changeRoad()">Αλλαγή</button>
+            </div>
+            <div class="col-6 col-sm-2 col-md-2 hidden" id="newRoad">
+                <input type="text" class="form-control" id="road"></input>
+            </div>
+            <div class="col-6 col-sm-2 col-md-2 hidden" id="newRoadConfirm">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changeRoadConfirm()">Επιβεβαίωση</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-sm-2 col-md-2">
+                Αριθμός
+            </div>
+            <div class="col-6 col-sm-2 col-md-2" id="currentNo">
+            </div>
+            <div class="col-sm-2 col-md-2">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changeNo()">Αλλαγή</button>
+            </div>
+            <div class="col-6 col-sm-2 col-md-2 hidden" id="newNo">
+                <input type="text" class="form-control" id="no"></input>
+            </div>
+            <div class="col-6 col-sm-2 col-md-2 hidden" id="newNoConfirm">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changeNoConfirm()">Επιβεβαίωση</button>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-6 col-sm-2 col-md-2">
+                Αριθμός κάρτας
+            </div>
+            <div class="col-6 col-sm-2 col-md-2" id="currentCardNo">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-sm-2 col-md-2">
+                Κωδικός κάρτας
+            </div>
+            <div class="col-6 col-sm-2 col-md-2" id="currentCardCode">
+                xxxx
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-sm-2 col-md-2">
+                Ημερομηνία λήξης
+            </div>
+            <div class="col-6 col-sm-2 col-md-2" id="currentCardExp">
+            </div>
+            <div class="col-sm-2 col-md-2">
+                <button class="btn btn-primary mt-2 mt-sm-0" onclick="changeCard()">Αλλαγή</button>
+            </div>
+        </div>
+        <div class="hidden" id="cardFields">
+            <div class="row">
+                <div class="col-6 col-sm-5 col-md-3 col-lg-2">
+                    Νέος αριθμός κάρτας
+                </div>
+                <div class="col-6 col-sm-5 col-md-3 col-lg-2">
+                    <input type="number" class="form-control" id="cardNo"></input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 col-sm-5 col-md-3 col-lg-2">
+                    Νέος κωδικός κάρτας
+                </div>
+                <div class="col-6 col-sm-5 col-md-3 col-lg-2">
+                    <input type="number" class="form-control" id="cardCode"></input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 col-sm-5 col-md-3 col-lg-2">
+                    Νέα ημερομηνία λήξης
+                </div>
+                <div class="col-6 col-sm-5 col-md-3 col-lg-2">
+                    <input type="date" class="form-control" id="cardExp"></input>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-6 col-sm-5 col-md-3 col-lg-2">
+                </div>
+                <div class="col-6 col-sm-2 col-md-2 col-lg-2">
+                    <button class="btn btn-primary mt-2 mt-sm-0" onclick="changeCardConfirm()">Επιβεβαίωση</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

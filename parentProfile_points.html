@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Δραστηριότητες</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./public/css/style.css">
+        <link rel="stylesheet" type="text/css" href="./public/css/diafora.css">
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <script src="./public/js/cookies.js"></script>
+        <script src="./public/js/navBar.js"></script>
+        <script src="./public/js/parentProfile_points.js"></script>
+
+    </head>
+    <body>
+        <!-- Top black bar -->
+        <div class="bg-dark" dir="rtl" id="topBar">
+            <a class="nav-link text-white text-right" href="signin.html" style="display: inline;"><small>Σύνδεση</small></a>
+            <a class="nav-link text-white text-left" href="signup.html" style="display: inline;"><small>Εγγραφή</small></a>
+        </div>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-sm navbar-light bg-primary">
+            <!-- Brand -->
+            <a class="navbar-brand" href="index.html">
+                <img src="./public/assets/images/logo.jpg" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="nav-content">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><b>Αρχική</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html"><b>Δραστηριότητες</b></a>
+                    </li>
+                    <li class="nav-item" id="profile">
+                    </li>
+                    <li class="nav-item">
+                        <input class="form-control" type="text" placeholder="Αναζήτηση" onkeydown="checkIfEnter()" id="searchText">
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <br>
+        <div class="row">
+            <div class="btn-group bg-primary" role="group" aria-label="...">
+            <button type="button" class="btn btn-default disabled" onclick="location.href = 'parentProfile.html';" >Στοιχεία</button>
+            <button type="button" class="btn btn-info active" onclick="location.href = 'parentProfile_points.html';">Πόντοι</button>
+            <button type="button" class="btn btn-default disabled" onclick="location.href = 'parentProfile_events.html';">Δραστηριότητες</button>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-sm-6 col-md-3 col-lg-2" id="pointsText">
+                Το υπόλοιπό μου:
+            </div>
+            <div class="col-sm-6 col-md-2 col-lg-2" id="points">
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-sm-6 col-md-3 col-lg-2">
+                <p>Θέλω να αγοράσω:</p>
+            </div>
+            <div class="col-sm-2 col-md-3 col-lg-2">
+                <input type="number" class="form-control" id="pointsToBuy" onkeyup="calculateCost()"></input>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <p style="display: inline;">πόντους. Κόστος σε ευρώ: </p>
+                <p class="text-right" id="cost" style="display: inline;"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p>Με κάθε αγορά άνω των 100 ευρώ παίρνετε δωρεάν 5 επιπλέον πόντους.</p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-3">
+                <button type="button" class="btn btn-primary btn-block" onclick="buyPoints()">Αγορά</button>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Διαχείριση γονέων</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./public/css/style.css">
+        <link rel="stylesheet" type="text/css" href="./public/css/diafora.css">
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <script src="./public/js/cookies.js"></script>
+        <script src="./public/js/navBar.js"></script>
+        <script src="./public/js/admin_parents.js"></script>
+
+    </head>
+    <body>
+        <!-- Top black bar -->
+        <div class="bg-dark" dir="rtl" id="topBar">
+        </div>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-sm navbar-light bg-primary">
+            <!-- Brand -->
+            <a class="navbar-brand" href="index.html">
+                <img src="./public/assets/images/logo.jpg" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="nav-content">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin_parents.html"><b>Γονείς</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin_providers.html"><b>Πάροχοι</b></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <br>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Όνομα</th>
+                    <th scope="col">Επώνυμο</th>
+                    <th scope="col">e-mail</th>
+                    <th scope="col">Τηλέφωνο</th>
+                    <th scope="col">ΤΚ</th>
+                    <th scope="col">Πόλη</th>
+                    <th scope="col">Οδός</th>
+                    <th scope="col">Αριθμός</th>
+                    <th scope="col">Κλειδωμένος</th>
+                    <th scope="col">Δυνατότητα Αγορών</th>
+                </tr>
+            </thead>
+            <tbody id="parents_data">
+            </tbody>
+        </table>
+
+    </body>
+</html>

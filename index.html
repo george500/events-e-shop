@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Αρχική</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./public/css/style.css">
+        <link rel="stylesheet" type="text/css" href="./public/css/diafora.css">
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <script src="./public/js/cookies.js"></script>
+        <script src="./public/js/navBar.js"></script>
+        <script src="./public/js/index.js"></script>
+
+    </head>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        .bg {
+            /* The image used */
+            background-image: url("./public/assets/images/homepage_water.jpg");
+
+            /* Full height */
+            height: 100%; 
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .center-vertically {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .center-horizontally {
+            width: 90%;
+            padding: 10px;
+            repeat: no-repeat;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .change-bg-color {
+            background-color: #eee;
+        }
+        .row {
+            margin-left : 0px;
+        }
+    </style>
+    <body>
+        <!-- Top black bar -->
+        <div class="bg-dark" dir="rtl" id="topBar">
+            <a class="nav-link text-white text-right" href="signin.html" style="display: inline;"><small>Σύνδεση</small></a>
+            <a class="nav-link text-white text-left" href="signup.html" style="display: inline;"><small>Εγγραφή</small></a>
+        </div>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-sm navbar-light bg-primary">
+            <!-- Brand -->
+            <a class="navbar-brand" href="index.html">
+                <img src="./public/assets/images/logo.jpg" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="nav-content">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><b>Αρχική</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html"><b>Δραστηριότητες</b></a>
+                    </li>
+                    <li class="nav-item" id="profile">
+                    </li>
+                    <li class="nav-item">
+                        <input class="form-control" type="text" placeholder="Αναζήτηση" onkeydown="checkIfEnter()" id="searchText">
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="bg">
+            <div class="center-vertically center-horizontally change-bg-color">
+                <h3 class="text-center">Εδώ θα βρείτε μοναδικές δραστηριότητες για τα παιδιά σας</h3>
+                <div class="row">
+                    <div class="col-0 col-sm-1 col-md-2  col-lg-4">
+                    </div>
+                    <div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-1">
+                        <p>Ηλικία</p>
+                    </div>
+                    <label>Από:</label>
+                    <div class="col-3 col-sm-2 col-md-2 col-lg-1">
+                        <input type="number" class="form-control" id="fromAge">
+                    </div>
+                    <label>Έως:</label>
+                    <div class="col-3 col-sm-2 col-md-2 col-lg-1">
+                        <input type="number" class="form-control" id="toAge">
+                    </div>
+                    <div class="col-0 col-sm-1 col-md-2 col-lg-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-0 col-sm-1 col-md-2 col-lg-4">
+                    </div>
+                    <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-1">
+                        <p>Ημερομηνία</p>
+                    </div>
+                    <div class="col-7 col-sm-6 col-md-5 col-lg-3 col-xl-2">
+                        <input type="date" class="form-control" id="date">
+                    </div>
+                    <div class="col-0 col-sm-1 col-md-2 col-lg-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-0 col-sm-3 col-md-3 col-lg-4">
+                    </div>
+                    <div class="col-10 col-sm-6 col-md-6 col-lg-4">
+                        <button class="btn btn-lg btn-primary btn-block" onclick="javascript:search()">Αναζήτηση</button>
+                    </div>
+                    <div class="col-0 col-sm-3 col-md-3 col-lg-2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

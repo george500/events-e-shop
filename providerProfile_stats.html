@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Στατιστικά</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./public/css/style.css">
+        <link rel="stylesheet" type="text/css" href="./public/css/diafora.css">
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <script src="./public/js/cookies.js"></script>
+        <script src="./public/js/navBar.js"></script>
+        <script src="./public/js/providerProfile_stats.js"></script>
+
+    </head>
+    <body>
+        <!-- Top black bar -->
+        <div class="bg-dark" dir="rtl" id="topBar">
+            <a class="nav-link text-white text-right" href="signin.html" style="display: inline;"><small>Σύνδεση</small></a>
+            <a class="nav-link text-white text-left" href="signup.html" style="display: inline;"><small>Εγγραφή</small></a>
+        </div>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-sm navbar-light bg-primary">
+            <!-- Brand -->
+            <a class="navbar-brand" href="index.html">
+                <img src="./public/assets/images/logo.jpg" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="nav-content">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><b>Αρχική</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html"><b>Δραστηριότητες</b></a>
+                    </li>
+                    <li class="nav-item" id="profile">
+                    </li>
+                    <li class="nav-item">
+                        <input class="form-control" type="text" placeholder="Αναζήτηση" onkeydown="checkIfEnter()" id="searchText">
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <br>
+        <div class="row">
+            <div class="btn-group bg-primary" role="group" aria-label="...">
+                <button type="button" class="btn btn-default disabled" onclick="location.href = 'providerProfile.html';" >Στοιχεία</button>
+                <button type="button" class="btn btn-default disabled" onclick="location.href = 'providerProfile_events.html';" >Δραστηριότητες</button>
+                <button type="button" class="btn btn-info active" onclick="location.href = 'providerProfile_stats.html';">Στατιστικά</button>
+                <button type="button" class="btn btn-default disabled" onclick="location.href = 'providerProfile_bills.html';">Τιμολόγια</button>
+                <button type="button" class="btn btn-default disabled" onclick="location.href = 'providerProfile_report.html';">Μηνιαία αναφορά</button>
+            </div>
+        </div>
+        <br>
+        <br>
+
+        <div class="container border-primary">
+            <p>Εμφάνηση πλήθους εισητηρίων που έχουν πουληθεί:</p>
+            <div class="row">
+                <div class="col-sm-4 col-md-3 col-lg-3">
+                    Ημερομηνία από:
+                </div>
+                <div class="col-sm-8 col-md-4 col-lg-3">
+                    <input type="date" class="form-control" id="fromDate">
+                </div>
+                <div class="col-md-5 col-lg-1" >
+                </div>
+                <div class="col-sm-4 col-md-3 col-lg-1">
+                    Έως:
+                </div>
+                <div class="col-sm-8 col-md-4 col-lg-3" >
+                    <input type="date" class="form-control" id="toDate">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 col-md-3 col-lg-3">
+                    Ηληκία από:
+                </div>
+                <div class="col-sm-4 col-md-3 col-lg-2">
+                    <input type="number" class="form-control" id="fromAge">
+                </div>
+                <div class="col-sm-4 col-md-6 col-lg-2" >
+                </div>
+                <div class="col-sm-4 col-md-3 col-lg-1">
+                    Έως:
+                </div>
+                <div class="col-sm-4 col-md-3 col-lg-2">
+                    <input type="number" class="form-control" id="toAge">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 col-md-3 col-lg-3">
+                    Κατηγορία:
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <select class="form-control selectpicker" id = "type">
+                        <option value = "0">Όλες</option>
+                        <option value = "1">Αθλητισμός</option>
+                        <option value = "2">Καλλιτεχνικά</option>
+                        <option value = "3">Μουσική</option>
+                        <option value = "4">Εκδηλώσεις</option>
+                        <option value = "5">Χορός</option>
+                        <option value = "6">Παιχνίδι</option>
+                        <option value = "7">Εργαστήρια</option>
+                        <option value = "8">Αποδράσεις</option>
+                        <option value = "9">Ταινίες</option>
+                        <option value = "10">Μαγειρική</option>
+                    </select>
+                </div>
+                <div class="col-sm-2 col-md-4 col-lg-6" >
+                </div>
+                <div class="col-sm-4 col-md-3 col-lg-3" >
+                </div>
+                <div class="col-sm-6 col-md-4" >
+                    <button type="button" class="btn btn-primary btn-md btn-block" onclick="searchStats()">Εμφάνιση</button>
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <br>
+        <div class="container border-primary">
+            <div class="row">
+                <div class="col-sm-12" id="results" style="text-align:center"></div>
+            </div>
+        </div>
+    </body>
+</html>

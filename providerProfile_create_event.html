@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Δημιουργία δραστηριότητας</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./public/css/style.css">
+        <link rel="stylesheet" type="text/css" href="./public/css/diafora.css">
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <script src="./public/js/cookies.js"></script>
+        <script src="./public/js/navBar.js"></script>
+        <script src="./public/js/providerProfile_create_event.js"></script>
+        <script src="./public/js/create_event_map.js"></script>
+        
+    </head>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+        .form-signup {
+            max-width: 330px;
+            padding: 15px;
+            margin: 0 auto;
+        }
+        .form-signup .form-signup-heading,
+        .form-signup .checkbox {
+            margin-bottom: 10px;
+        }
+        .form-signup .checkbox {
+            font-weight: 400;
+        }
+        .form-signup .form-control {
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .form-signup .form-control:focus {
+            z-index: 2;
+        }
+        .form-signup input[type='email'] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .form-signup input[type='number'] {
+            margin-bottom: -1px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+        .form-signup input[type='password'] {
+            margin-bottom: -1px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+        .form-signup input[type='tel'] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .form-signup input[type='text'] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    </style>
+    <body>
+        <!-- Top black bar -->
+        <div class="bg-dark" dir="rtl" id="topBar">
+            <a class="nav-link text-white text-right" href="signin.html" style="display: inline;"><small>Σύνδεση</small></a>
+            <a class="nav-link text-white text-left" href="signup.html" style="display: inline;"><small>Εγγραφή</small></a>
+        </div>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-sm navbar-light bg-primary">
+            <!-- Brand -->
+            <a class="navbar-brand" href="index.html">
+                <img src="./public/assets/images/logo.jpg" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="nav-content">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><b>Αρχική</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html"><b>Δραστηριότητες</b></a>
+                    </li>
+                    <li class="nav-item" id="profile">
+                    </li>
+                    <li class="nav-item">
+                        <input class="form-control" type="text" placeholder="Αναζήτηση" onkeydown="checkIfEnter()" id="searchText">
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <br>
+        <div class="row">
+            <div class="btn-group bg-primary" role="group" aria-label="...">
+                <button type="button" class="btn btn-default disabled" onclick="location.href = 'providerProfile.html';" >Στοιχεία</button>
+                <button type="button" class="btn btn-info active" onclick="location.href = 'providerProfile_events.html';" >Δραστηριότητες</button>
+                <button type="button" class="btn btn-default disabled" onclick="location.href = 'providerProfile_stats.html';">Στατιστικά</button>
+                <button type="button" class="btn btn-default disabled" onclick="location.href = 'providerProfile_bills.html';">Τιμολόγια</button>
+                <button type="button" class="btn btn-default disabled" onclick="location.href = 'providerProfile_report.html';">Μηνιαία αναφορά</button>
+            </div>
+        </div>
+        <br>
+        <div class="container">
+            <form class="form" id="create-event" method="post" action="javascript:createEvent()">
+                <h4 class="form-create-event-heading" style="text-align: center;">Παρακαλώ συμπληρώστε τα παρακάτω στοιχεία για τη δημιουργία νέας δραστηριότητας: </h4>
+                <br>
+                <label for="inputTitle" class="sr-only">Τίτλος</label>
+                <input type="text" id="inputTitle" class="form-control" placeholder="Τίτλος" name="title" required autofocus>
+                <label for="inputAvailable" class="sr-only">Διαθέσιμα Εισητήρια</label>
+                <input type="number" id="inputAvailable" class="form-control" placeholder="Διαθέσιμα Εισητήρια" name="availableTickets" required>
+                <label for="inputEmail" class="sr-only">Τιμή Εισητηρίου</label>
+                <input type="number" id="inputEmail" class="form-control" placeholder="Τιμή Εισητηρίου" name="ticketPrice" required>
+                <label for="inputPassword">Κατηγορία</label>
+                <select class="form-control" id="category" placeholder="Κατηγορία" name="category">
+                    <option value = "1">Αθλητισμός</option>
+                    <option value = "2">Καλλιτεχνικά</option>
+                    <option value = "3">Μουσική</option>
+                    <option value = "4">Εκδηλώσεις</option>
+                    <option value = "5">Χορός</option>
+                    <option value = "6">Παιχνίδι</option>
+                    <option value = "7">Εργαστήρια</option>
+                    <option value = "8">Αποδράσεις</option>
+                    <option value = "9">Ταινίες</option>
+                    <option value = "10">Μαγειρική</option>
+                </select>
+                <label for="inputPostCode">Ηλικία από:</label>
+                <input type="number" id="inputPostCod" class="form-control" placeholder="Ηλικία" name="fromAge" required>
+                <label for="inputPostCode">Ηλικία έως:</label>
+                <input type="number" id="inputPostCod" class="form-control" placeholder="Ηλικία" name="toAge" required>
+                <label for="inputDate">Ημερομηνία</label>
+                <input type="date" id="inputDate" class="form-control" placeholder="12:02:2017" name="date" required>
+                <label for="inputfromTime">Ώρα έναρξης</label>
+                <input type="time" id="inputfromTime" class="form-control" name="fromTime" required>
+                <label for="inputtoTime">Ώρα λήξης</label>
+                <input type="time" id="inputtoTime" class="form-control" name="toTime" required>
+                <label for="exampleFormControlTextarea1">Σύντομη περιγραφή:</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description" placeholder="Ευχαριστος χώρος, για παιδιά κλπ."></textarea>
+                <p>Φωτογραφία:</p>
+                <input type="file" id="inputImage" class="form-control" placeholder="Φωτογραφία" name="image" required>
+                <p>Τοποθεσία (Σύρετε το ταμπελάκι)</p>
+                <div id="map">
+                </div>
+                <br>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Δημιουργία</button>
+                <button class="btn btn-lg btn-warning btn-block" type="reset" value="Reset">Εκκαθάριση πεδίων</button>
+            </form>
+
+        </div>
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDZQEyTg_XqeWMvjnxFB3jqQtbsIfHQDo&callback=initMap">
+        </script>
+    </body>
+</html>

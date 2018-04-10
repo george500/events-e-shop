@@ -1,0 +1,9 @@
+body {
+    background-color: #eee ;
+}
+.row {
+    margin-left : 20px;
+}
+.hidden {
+    display: none;
+}

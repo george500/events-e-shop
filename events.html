@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Δραστηριότητες</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./public/css/style.css">
+        <link rel="stylesheet" type="text/css" href="./public/css/diafora.css">
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <script src="./public/js/cookies.js"></script>
+        <script src="./public/js/navBar.js"></script>
+        <script src="./public/js/events.js"></script>
+        <script src="./public/js/search.js"></script>
+        <script src="./public/js/events_map.js"></script>
+
+    </head>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }#map1 {
+            height: 400px;
+            width: 100%;
+        }
+        .big-checkbox {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+    <body>
+        <!-- Top black bar -->
+        <div class="bg-dark" dir="rtl" id="topBar">
+            <a class="nav-link text-white text-right" href="signin.html" style="display: inline;"><small>Σύνδεση</small></a>
+            <a class="nav-link text-white text-left" href="signup.html" style="display: inline;"><small>Εγγραφή</small></a>
+        </div>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-sm navbar-light bg-primary">
+            <!-- Brand -->
+            <a class="navbar-brand" href="index.html">
+                <img src="./public/assets/images/logo.jpg" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="nav-content">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><b>Αρχική</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="events.html"><b>Δραστηριότητες</b></a>
+                    </li>
+                    <li class="nav-item" id="profile">
+                    </li>
+                    <li class="nav-item">
+                        <input class="form-control" type="text" placeholder="Αναζήτηση" onkeydown="checkIfEnter()" id="searchText">
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <dd><button type="button" class="btn btn-info btn-lg" onclick="showSearch()" id="searchButton">Απόκρυψη Αναζήτησης</button></dd>
+            </div>
+        </div>
+        <br>
+        <div id="advancedSearch">
+            <div class="row">
+                <div class="col-11 col-sm-8 col-md-4 col-lg-4">
+                    <input type="text" class="form-control" placeholder="Αναζήτηση για..." id="freeText">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 col-sm-2 col-md-2 col-lg-3">
+                    <p>Κατηγορία</p>
+                </div>
+                <div class="col-7 col-sm-6 col-md-6 col-lg-3">
+                    <select class="form-control" id="category" placeholder="Κατηγορία" >
+                        <option value = "0">Όλες</option>
+                        <option value = "1">Αθλητισμός</option>
+                        <option value = "2">Καλλιτεχνικά</option>
+                        <option value = "3">Μουσική</option>
+                        <option value = "4">Εκδηλώσεις</option>
+                        <option value = "5">Χορός</option>
+                        <option value = "6">Παιχνίδι</option>
+                        <option value = "7">Εργαστήρια</option>
+                        <option value = "8">Αποδράσεις</option>
+                        <option value = "9">Ταινίες</option>
+                        <option value = "10">Μαγειρική</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 col-sm-2 col-md-2 col-lg-3">
+                    <p>Ημερομηνία</p>
+                </div>
+                <div class="col-7 col-sm-6 col-md-6 col-lg-3">
+                    <input type="date" class="form-control" id="date">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+                    <p>Ηλικία</p>
+                </div>
+                <label>Από</label>
+                <div class="col-3 col-sm-2 col-md-2 col-lg-1">
+                    <input type="number" class="form-control" id="fromAge">
+                </div>
+                <label>Έως</label>
+                <div class="col-3 col-sm-2 col-md-2 col-lg-1">
+                    <input type="number" class="form-control" id="toAge">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+                    <p>Τιμή</p>
+                </div>
+                <label>Από</label>
+                <div class="col-3 col-sm-2 col-md-2 col-lg-1">
+                    <input type="number" class="form-control" id="fromPrice">
+                </div>
+                <label>Έως</label>
+                <div class="col-3 col-sm-2 col-md-2 col-lg-1">
+                    <input type="number" class="form-control" id="toPrice">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 col-sm-3 col-md-3 col-lg-3">
+                    <p>Διάρκεια (λεπτά)</p>
+                </div>
+                <label>Από</label>
+                <div class="col-3 col-sm-2 col-md-2 col-lg-1">
+                    <input type="number" class="form-control" id="fromDuration">
+                </div>
+                <label>Έως</label>
+                <div class="col-3 col-sm-2 col-md-2 col-lg-1">
+                    <input type="number" class="form-control" id="toDuration">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 col-sm-3 col-md-4 col-lg-4">
+                    <p>Πλήθος παιδιών</p>
+                </div>
+                <div class="col-3 col-sm-2 col-md-2 col-lg-1">
+                    <input type="number" class="form-control" id="tickets">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 col-sm-3 col-md-4 col-lg-4">
+                    <p>Επιλογή σημείου στον χάρτη</p>
+                </div>
+                <div class="col-3 col-sm-2 col-md-2 col-lg-1">
+                    <input type="checkbox" class="form-control big-checkbox" id="mapCheckbox">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 col-sm-3 col-md-4 col-lg-4">
+                    <p>Μέγιστη απόσταση επιλεγμένο σημείο:</p>
+                </div>
+                <div class="col-3 col-sm-2 col-md-2 col-lg-1">
+                    <input type="number" class="form-control" id="distance">
+                </div>
+                <label>χλμ.</label>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-8">
+                    <div id="map"></div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-8 col-sm-8 col-md-8 col-lg-6 col-xl-4">
+                </div>
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="search()">Αναζήτηση</button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row hidden" id ="resultsMap">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <p>Χάρτης Δραστηριοτήτων</p>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl-10">
+                <div id="map1"></div>
+            </div>
+        </div>
+        <br>
+        <div id="events">
+        </div>
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?sensor=false&v=3&libraries=geometry&key=AIzaSyBDZQEyTg_XqeWMvjnxFB3jqQtbsIfHQDo&callback=initMap">
+        </script>
+    </body>
+</html>
